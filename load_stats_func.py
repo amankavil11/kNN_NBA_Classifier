@@ -2,6 +2,11 @@ import pandas as pd
 
 def load_NBA_stats(return_X_y=False, target_col=None, split_test=False, split_test_elements=None):
     df_NBA_Stats = pd.read_csv('NBA_Player_Stats.csv')
+    df_NBA_Stats2 = pd.read_csv('NBA_Player_Stats2.csv')
+    df_NBA_Stats3 = pd.read_csv('NBA_Player_Stats3.csv')
+
+    df_NBA_Stats = pd.concat([df_NBA_Stats,df_NBA_Stats2, df_NBA_Stats3],ignore_index=True, axis=0)
+    df_NBA_Stats = df_NBA_Stats.sample(frac=1, ignore_index=True)
 
     if return_X_y:
         if target_col is None:
